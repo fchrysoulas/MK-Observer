@@ -1,0 +1,114 @@
+/* ------------------------------------------------------------ */
+/* Observer client                                               */
+/* ------------------------------------------------------------ */
+
+body.mk-observer-client.mk-observer-minimal #controls,
+body.mk-observer-client.mk-observer-minimal #scene-controls,
+body.mk-observer-client.mk-observer-minimal #scene-controls-container,
+body.mk-observer-client.mk-observer-minimal .scene-controls,
+body.mk-observer-client.mk-observer-minimal .scene-controls-container,
+body.mk-observer-client.mk-observer-minimal [data-application-part="scene-controls"],
+body.mk-observer-client.mk-observer-minimal [data-application-id="scene-controls"],
+body.mk-observer-client.mk-observer-minimal #pause,
+body.mk-observer-client.mk-observer-minimal #fps,
+body.mk-observer-client.mk-observer-minimal #camera-views .camera-view[data-user] .av-control,
+body.mk-observer-client.mk-observer-hide-controls #controls,
+body.mk-observer-client.mk-observer-hide-controls #scene-controls,
+body.mk-observer-client.mk-observer-hide-controls #scene-controls-container,
+body.mk-observer-client.mk-observer-hide-controls .scene-controls,
+body.mk-observer-client.mk-observer-hide-controls .scene-controls-container,
+body.mk-observer-client.mk-observer-hide-controls [data-application-part="scene-controls"],
+body.mk-observer-client.mk-observer-hide-controls [data-application-id="scene-controls"],
+body.mk-observer-client.mk-observer-hide-controls #pause,
+body.mk-observer-client.mk-observer-hide-controls #fps,
+body.mk-observer-client.mk-observer-hide-controls #camera-views .camera-view[data-user] .av-control,
+.mk-observer-observer-controls-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+body.mk-observer-client.mk-observer-hide-dice-so-nice #dice-box-canvas,
+body.mk-observer-client.mk-observer-hide-dice-so-nice [id^="dice-box-canvas"],
+body.mk-observer-client.mk-observer-hide-dice-so-nice .dice-box-canvas,
+body.mk-observer-client.mk-observer-hide-dice-so-nice #dice-so-nice-canvas,
+body.mk-observer-client.mk-observer-hide-dice-so-nice .dice-so-nice-canvas,
+body.mk-observer-client.mk-observer-hide-dice-so-nice .dsn-dice-canvas,
+.mk-observer-dsn-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+body.mk-observer-client.mk-observer-hide-logo #logo,
+body.mk-observer-client.mk-observer-hide-logo img#logo {
+  display: none !important;
+}
+
+body.mk-observer-client.mk-observer-hide-navigation #navigation,
+body.mk-observer-client.mk-observer-hide-navigation #scene-navigation {
+  display: none !important;
+}
+
+body.mk-observer-client.mk-observer-hide-player-list #players,
+body.mk-observer-client.mk-observer-hide-player-list #player-list {
+  display: none !important;
+}
+
+body.mk-observer-client.mk-observer-hide-sidebar #sidebar {
+  display: none !important;
+}
+
+body.mk-observer-client.mk-observer-hide-hotbar #hotbar {
+  display: none !important;
+}
+
+body.mk-observer-client .window-app,
+body.mk-observer-client .application {
+  --mk-observer-window-transition: none;
+}
+
+/* ------------------------------------------------------------ */
+/* Token HUD tracking                                            */
+/* ------------------------------------------------------------ */
+
+.mk-observer-track-control.active {
+  border-color: #c88a35 !important;
+  color: #f4c77f !important;
+  box-shadow: 0 0 6px rgba(200, 138, 53, 0.75);
+}
+
+/* ------------------------------------------------------------ */
+/* Observer chat popout                                          */
+/* ------------------------------------------------------------ */
+
+.mk-observer-chat-window {
+  min-width: 280px;
+  min-height: 240px;
+}
+
+.mk-observer-chat-window.mk-observer-chat-read-only #chat-controls,
+.mk-observer-chat-window.mk-observer-chat-read-only #chat-form,
+.mk-observer-chat-window.mk-observer-chat-read-only .chat-controls,
+.mk-observer-chat-window.mk-observer-chat-read-only .chat-form,
+.mk-observer-chat-window.mk-observer-chat-read-only .chat-input,
+.mk-observer-chat-window.mk-observer-chat-read-only [data-application-part="chat-controls"],
+.mk-observer-chat-window.mk-observer-chat-read-only [data-application-part="chat-form"],
+.mk-observer-chat-window.mk-observer-chat-read-only [data-application-part="chat-input"],
+.mk-observer-chat-window.mk-observer-chat-read-only [data-application-part="controls"],
+.mk-observer-chat-window.mk-observer-chat-read-only #dice-tray,
+.mk-observer-chat-window.mk-observer-chat-read-only .dice-tray,
+.mk-observer-chat-window.mk-observer-chat-read-only [data-dice-tray],
+.mk-observer-chat-window.mk-observer-chat-read-only [data-application-part="dice-tray"],
+.mk-observer-chat-control-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.mk-observer-chat-window.mk-observer-chat-read-only #chat-log,
+.mk-observer-chat-window.mk-observer-chat-read-only .chat-log,
+.mk-observer-chat-window.mk-observer-chat-read-only [data-application-part="log"] {
+  height: 100% !important;
+  max-height: none !important;
+}

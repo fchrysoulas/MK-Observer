@@ -1,0 +1,145 @@
+{
+  "mk-observer": {
+    "cameraModes": {
+      "automatic": "Automatic",
+      "directed": "Directed",
+      "disabled": "Disabled"
+    },
+    "settings": {
+      "noUser": "— Select observer user —",
+      "observerUserId": {
+        "name": "Observer User",
+        "hint": "Select the dedicated non-GM user used by OBS or a separate browser window. Reload after changing this setting."
+      },
+      "cameraMode": {
+        "name": "Camera Mode",
+        "hint": "Automatic frames tracked tokens and the party. Directed follows GM camera movement. Disabled leaves the observer camera untouched."
+      },
+      "hideObserverUI": {
+        "name": "Use Minimal Observer Interface",
+        "hint": "Hide gameplay controls from the selected observer user."
+      },
+      "showLogo": {
+        "name": "Show Foundry Logo",
+        "hint": "Keep the Foundry logo visible on the observer client."
+      },
+      "showNavigation": {
+        "name": "Show Scene Navigation",
+        "hint": "Keep scene navigation visible on the observer client."
+      },
+      "showPlayerList": {
+        "name": "Show Player List",
+        "hint": "Keep the player list visible on the observer client."
+      },
+      "showSidebar": {
+        "name": "Show Sidebar",
+        "hint": "Keep the Foundry sidebar visible on the observer client."
+      },
+      "showHotbar": {
+        "name": "Show Hotbar",
+        "hint": "Keep the macro hotbar visible on the observer client."
+      },
+      "chatMode": {
+        "name": "Observer Chat Window",
+        "hint": "Disabled shows no separate chat. Floating opens chat as a Foundry popout on v12-v14. Detached uses a separate browser window on v14 and falls back to a floating popout on v12-v13."
+      },
+      "chatWidth": {
+        "name": "Chat Window Width",
+        "hint": "Initial width of the observer chat window in pixels."
+      },
+      "chatHeight": {
+        "name": "Chat Window Height",
+        "hint": "Initial height of the observer chat window in pixels."
+      },
+      "chatLeft": {
+        "name": "Chat Window Left Position",
+        "hint": "Initial horizontal position of the floating chat window in pixels. Native v14 detached windows may let the browser control the final position."
+      },
+      "chatTop": {
+        "name": "Chat Window Top Position",
+        "hint": "Initial vertical position of the floating chat window in pixels. Native v14 detached windows may let the browser control the final position."
+      },
+      "chatReadOnly": {
+        "name": "Hide Chat User Controls",
+        "hint": "Hide the chat toolbar, message composer, and Dice Tray controls in the observer chat window. Existing and new chat roll cards, formulas, totals, and messages remain visible."
+      },
+      "trackCombat": {
+        "name": "Automatic Combat Focus",
+        "hint": "During combat, frame the current combatant instead of the full party."
+      },
+      "includeTargets": {
+        "name": "Include Combat Targets",
+        "hint": "Frame tokens targeted by the current combatant's owners or by a GM."
+      },
+      "ignoreHidden": {
+        "name": "Ignore Hidden Tokens",
+        "hint": "Do not use hidden or invisible tokens when calculating automatic framing."
+      },
+      "cameraPadding": {
+        "name": "Camera Edge Padding",
+        "hint": "Reserved screen space in pixels around the framed token group."
+      },
+      "minimumScale": {
+        "name": "Minimum Camera Scale",
+        "hint": "The furthest automatic camera zoom allowed."
+      },
+      "maximumScale": {
+        "name": "Maximum Camera Scale",
+        "hint": "The closest automatic camera zoom allowed."
+      },
+      "reactionDelay": {
+        "name": "Cinematic Reaction Delay",
+        "hint": "Milliseconds before the automatic camera responds to a new token position. Updates are throttled rather than repeatedly postponed."
+      },
+      "panSmoothTime": {
+        "name": "Cinematic Pan Smooth Time",
+        "hint": "Milliseconds used by the critically damped camera spring. Higher values create slower, softer horizontal and vertical movement."
+      },
+      "zoomSmoothTime": {
+        "name": "Cinematic Zoom Smooth Time",
+        "hint": "Milliseconds used to ease zoom changes. Higher values make zooming more gradual than panning."
+      },
+      "panDeadZone": {
+        "name": "Pan Dead Zone",
+        "hint": "Screen-space pixels the target may move before the camera starts following. Helps prevent tiny camera jitters."
+      },
+      "zoomDeadZone": {
+        "name": "Zoom Dead Zone (%)",
+        "hint": "Percentage zoom difference ignored by the camera. Helps prevent constant micro-zooming."
+      },
+      "maximumPanSpeed": {
+        "name": "Maximum Pan Speed",
+        "hint": "Maximum visual camera travel in screen pixels per second. Set to 0 for no speed limit."
+      },
+      "maximumZoomSpeed": {
+        "name": "Maximum Zoom Speed",
+        "hint": "Maximum scale change per second. Set to 0 for no speed limit."
+      },
+      "directedSampleInterval": {
+        "name": "Directed Camera Sample Interval",
+        "hint": "Milliseconds between GM camera updates sent to the observer. Lower values are more responsive; higher values reduce network traffic."
+      },
+      "debug": {
+        "name": "Debug Logging",
+        "hint": "Write MK-Observer diagnostics to the browser console."
+      },
+      "hideObserverControls": {
+        "name": "Hide Observer User Controls",
+        "hint": "Hide Foundry scene controls, canvas tools, pause and FPS indicators, and voice/video action controls on the observer client. This is independent of the broader Minimal Observer Interface setting."
+      },
+      "hideDiceSoNice": {
+        "name": "Hide Dice So Nice 3D Dice",
+        "hint": "Suppress the Dice So Nice 3D dice layer only on the selected observer client. Chat roll cards, formulas, and numerical results remain visible."
+      }
+    },
+    "ui": {
+      "trackTokens": "Track selected token(s) with MK-Observer",
+      "untrackTokens": "Stop tracking selected token(s) with MK-Observer"
+    },
+    "chatModes": {
+      "disabled": "Disabled",
+      "popout": "Floating Chat Window",
+      "detached": "Detached Browser Window"
+    }
+  }
+}

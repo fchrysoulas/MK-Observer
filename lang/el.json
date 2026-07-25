@@ -1,0 +1,145 @@
+{
+  "mk-observer": {
+    "cameraModes": {
+      "automatic": "Αυτόματη",
+      "directed": "Καθοδηγούμενη",
+      "disabled": "Απενεργοποιημένη"
+    },
+    "settings": {
+      "noUser": "— Επιλογή χρήστη παρατηρητή —",
+      "observerUserId": {
+        "name": "Χρήστης Παρατηρητή",
+        "hint": "Επίλεξε τον ειδικό non-GM χρήστη που χρησιμοποιείται από το OBS ή ξεχωριστό παράθυρο browser. Απαιτείται επαναφόρτωση μετά την αλλαγή."
+      },
+      "cameraMode": {
+        "name": "Λειτουργία Κάμερας",
+        "hint": "Η Αυτόματη καδράρει tracked tokens και την ομάδα. Η Καθοδηγούμενη ακολουθεί την κάμερα του GM. Η Απενεργοποιημένη αφήνει την κάμερα ελεύθερη."
+      },
+      "hideObserverUI": {
+        "name": "Minimal Περιβάλλον Παρατηρητή",
+        "hint": "Κρύβει τα χειριστήρια παιχνιδιού από τον επιλεγμένο χρήστη παρατηρητή."
+      },
+      "showLogo": {
+        "name": "Εμφάνιση Foundry Logo",
+        "hint": "Διατηρεί ορατό το λογότυπο του Foundry στον παρατηρητή."
+      },
+      "showNavigation": {
+        "name": "Εμφάνιση Scene Navigation",
+        "hint": "Διατηρεί ορατή την πλοήγηση σκηνών στον παρατηρητή."
+      },
+      "showPlayerList": {
+        "name": "Εμφάνιση Λίστας Παικτών",
+        "hint": "Διατηρεί ορατή τη λίστα παικτών στον παρατηρητή."
+      },
+      "showSidebar": {
+        "name": "Εμφάνιση Sidebar",
+        "hint": "Διατηρεί ορατό το sidebar του Foundry στον παρατηρητή."
+      },
+      "showHotbar": {
+        "name": "Εμφάνιση Hotbar",
+        "hint": "Διατηρεί ορατό το macro hotbar στον παρατηρητή."
+      },
+      "chatMode": {
+        "name": "Παράθυρο Chat Παρατηρητή",
+        "hint": "Το Απενεργοποιημένο δεν ανοίγει ξεχωριστό chat. Το Αιωρούμενο ανοίγει Foundry popout σε v12-v14. Το Ξεχωριστό χρησιμοποιεί ανεξάρτητο παράθυρο browser στο v14 και επιστρέφει σε αιωρούμενο popout στα v12-v13."
+      },
+      "chatWidth": {
+        "name": "Πλάτος Παραθύρου Chat",
+        "hint": "Αρχικό πλάτος του παραθύρου chat του παρατηρητή σε pixels."
+      },
+      "chatHeight": {
+        "name": "Ύψος Παραθύρου Chat",
+        "hint": "Αρχικό ύψος του παραθύρου chat του παρατηρητή σε pixels."
+      },
+      "chatLeft": {
+        "name": "Οριζόντια Θέση Chat",
+        "hint": "Αρχική οριζόντια θέση του αιωρούμενου παραθύρου chat σε pixels. Στο native detached παράθυρο του v14 η τελική θέση μπορεί να ελέγχεται από τον browser."
+      },
+      "chatTop": {
+        "name": "Κάθετη Θέση Chat",
+        "hint": "Αρχική κάθετη θέση του αιωρούμενου παραθύρου chat σε pixels. Στο native detached παράθυρο του v14 η τελική θέση μπορεί να ελέγχεται από τον browser."
+      },
+      "chatReadOnly": {
+        "name": "Απόκρυψη Χειριστηρίων Χρήστη Chat",
+        "hint": "Κρύβει το chat toolbar, το πεδίο αποστολής και τα χειριστήρια Dice Tray στο παράθυρο chat του παρατηρητή. Τα υπάρχοντα και νέα chat roll cards, οι φόρμουλες, τα σύνολα και τα μηνύματα παραμένουν ορατά."
+      },
+      "trackCombat": {
+        "name": "Αυτόματη Εστίαση Μάχης",
+        "hint": "Κατά τη μάχη καδράρει τον ενεργό combatant αντί για ολόκληρη την ομάδα."
+      },
+      "includeTargets": {
+        "name": "Συμπερίληψη Στόχων Μάχης",
+        "hint": "Καδράρει tokens που στοχεύονται από τους ιδιοκτήτες του ενεργού combatant ή από GM."
+      },
+      "ignoreHidden": {
+        "name": "Αγνόηση Κρυφών Tokens",
+        "hint": "Δεν χρησιμοποιεί κρυφά ή αόρατα tokens στον υπολογισμό του αυτόματου καδραρίσματος."
+      },
+      "cameraPadding": {
+        "name": "Περιθώριο Κάμερας",
+        "hint": "Κενός χώρος σε pixels γύρω από την ομάδα των tokens."
+      },
+      "minimumScale": {
+        "name": "Ελάχιστο Camera Scale",
+        "hint": "Το πιο μακρινό επιτρεπόμενο αυτόματο zoom."
+      },
+      "maximumScale": {
+        "name": "Μέγιστο Camera Scale",
+        "hint": "Το πιο κοντινό επιτρεπόμενο αυτόματο zoom."
+      },
+      "reactionDelay": {
+        "name": "Cinematic Καθυστέρηση Αντίδρασης",
+        "hint": "Milliseconds πριν η αυτόματη κάμερα αντιδράσει σε νέα θέση token. Τα updates περιορίζονται χρονικά χωρίς να αναβάλλονται συνεχώς."
+      },
+      "panSmoothTime": {
+        "name": "Cinematic Pan Smooth Time",
+        "hint": "Milliseconds για το critically damped camera spring. Μεγαλύτερη τιμή δημιουργεί πιο αργή και απαλή οριζόντια και κάθετη κίνηση."
+      },
+      "zoomSmoothTime": {
+        "name": "Cinematic Zoom Smooth Time",
+        "hint": "Milliseconds για την εξομάλυνση του zoom. Μεγαλύτερη τιμή κάνει το zoom πιο σταδιακό από το pan."
+      },
+      "panDeadZone": {
+        "name": "Pan Dead Zone",
+        "hint": "Pixels στην οθόνη που μπορεί να μετακινηθεί ο στόχος πριν αρχίσει να τον ακολουθεί η κάμερα. Περιορίζει τα μικρά τινάγματα."
+      },
+      "zoomDeadZone": {
+        "name": "Zoom Dead Zone (%)",
+        "hint": "Ποσοστιαία διαφορά zoom που αγνοείται από την κάμερα. Περιορίζει το συνεχές micro-zoom."
+      },
+      "maximumPanSpeed": {
+        "name": "Μέγιστη Ταχύτητα Pan",
+        "hint": "Μέγιστη οπτική μετακίνηση της κάμερας σε screen pixels ανά δευτερόλεπτο. Η τιμή 0 αφαιρεί το όριο."
+      },
+      "maximumZoomSpeed": {
+        "name": "Μέγιστη Ταχύτητα Zoom",
+        "hint": "Μέγιστη αλλαγή scale ανά δευτερόλεπτο. Η τιμή 0 αφαιρεί το όριο."
+      },
+      "directedSampleInterval": {
+        "name": "Directed Camera Sample Interval",
+        "hint": "Milliseconds ανάμεσα στα camera updates που στέλνει ο GM στον παρατηρητή. Μικρότερη τιμή είναι πιο άμεση, μεγαλύτερη μειώνει την κίνηση δικτύου."
+      },
+      "debug": {
+        "name": "Debug Logging",
+        "hint": "Γράφει διαγνωστικά μηνύματα του MK-Observer στην browser console."
+      },
+      "hideObserverControls": {
+        "name": "Απόκρυψη Χειριστηρίων Χρήστη Παρατηρητή",
+        "hint": "Κρύβει τα Foundry scene controls, τα canvas tools, τις ενδείξεις pause και FPS, και τα voice/video action controls στον παρατηρητή. Λειτουργεί ανεξάρτητα από το γενικό Minimal Περιβάλλον Παρατηρητή."
+      },
+      "hideDiceSoNice": {
+        "name": "Απόκρυψη 3D Ζαριών Dice So Nice",
+        "hint": "Κρύβει το 3D layer του Dice So Nice μόνο στον επιλεγμένο παρατηρητή. Τα chat roll cards, οι φόρμουλες και τα αριθμητικά αποτελέσματα παραμένουν ορατά."
+      }
+    },
+    "ui": {
+      "trackTokens": "Παρακολούθηση επιλεγμένων token(s) με το MK-Observer",
+      "untrackTokens": "Διακοπή παρακολούθησης επιλεγμένων token(s) με το MK-Observer"
+    },
+    "chatModes": {
+      "disabled": "Απενεργοποιημένο",
+      "popout": "Αιωρούμενο Παράθυρο Chat",
+      "detached": "Ξεχωριστό Παράθυρο Browser"
+    }
+  }
+}

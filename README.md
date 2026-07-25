@@ -1,4 +1,4 @@
-# MK-Observer v0.4.0
+# MK-Observer v0.5.0
 
 MK-Observer is a lightweight observer and stream-view module for Foundry Virtual Tabletop v12–v14.
 
@@ -13,8 +13,23 @@ MK-Observer is a lightweight observer and stream-view module for Foundry Virtual
 
 ## Installation
 
-1. Extract the `mk-observer` folder into `FoundryVTT/Data/modules/`
-2. Enable **MK-Observer** in your world.
+### Install from the module manifest
+
+1. Open Foundry VTT and select **Add-on Modules**.
+2. Click **Install Module**.
+3. Paste this URL into **Manifest URL**:
+
+   ```text
+   https://github.com/fchrysoulas/MK-Observer/releases/latest/download/module.json
+   ```
+
+4. Click **Install**, then enable **MK-Observer** in your world.
+
+### Install manually
+
+1. Download and extract the module into `FoundryVTT/Data/modules/mk-observer/`.
+2. Restart Foundry VTT.
+3. Enable **MK-Observer** in your world.
 
 ## Setup
 

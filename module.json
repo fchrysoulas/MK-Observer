@@ -38,5 +38,6 @@
       "path": "lang/el.json"
     }
   ],
-  "socket": true
+  "socket": true,
+  "license": "MIT"
 }

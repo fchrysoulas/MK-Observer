@@ -1,6 +1,8 @@
-# MK-Observer v0.5.0
+# MK-Observer v0.5.1
 
 MK-Observer is a lightweight observer and stream-view module for Foundry Virtual Tabletop v12–v14.
+
+See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## What it does
 
@@ -55,6 +57,10 @@ Follows the GM camera target through cinematic smoothing. For stable results, on
 ### Disabled
 
 The observer camera stays manual and never moves automatically.
+
+## Observer scene limits
+
+Enable **Limit Observer Camera to Scene** to keep only the **Observer User** inside the active scene's bounds. It prevents manual pan and zoom from exposing the padded canvas, and constrains both Automatic and Directed camera targets. The setting may zoom in as needed to fill the observer's viewport; GMs and other players are unaffected.
 
 ## Observer chat window modes
 

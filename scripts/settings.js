@@ -45,6 +45,17 @@ export function registerSettings() {
     onChange: (mode) => Hooks.callAll(`${MODULE_ID}.cameraModeChanged`, mode)
   });
 
+  register(SETTINGS.LIMIT_TO_SCENE, {
+    name: key(SETTINGS.LIMIT_TO_SCENE, "name"),
+    hint: key(SETTINGS.LIMIT_TO_SCENE, "hint"),
+    scope: "world",
+    config: true,
+    restricted: true,
+    type: Boolean,
+    default: false,
+    onChange: () => Hooks.callAll(`${MODULE_ID}.sceneBoundsChanged`)
+  });
+
   register(SETTINGS.HIDE_OBSERVER_UI, {
     name: key(SETTINGS.HIDE_OBSERVER_UI, "name"),
     hint: key(SETTINGS.HIDE_OBSERVER_UI, "hint"),

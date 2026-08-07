@@ -1,6 +1,6 @@
 export const MODULE_ID = "mk-observer";
 export const MODULE_TITLE = "MK-Observer";
-export const MODULE_VERSION = "0.4.0";
+export const MODULE_VERSION = "0.5.1";
 export const SOCKET_NAME = `module.${MODULE_ID}`;
 
 export const CAMERA_MODES = Object.freeze({
@@ -18,6 +18,7 @@ export const CHAT_MODES = Object.freeze({
 export const SETTINGS = Object.freeze({
   OBSERVER_USER_ID: "observerUserId",
   CAMERA_MODE: "cameraMode",
+  LIMIT_TO_SCENE: "limitToScene",
   HIDE_OBSERVER_UI: "hideObserverUI",
   HIDE_OBSERVER_CONTROLS: "hideObserverControls",
   HIDE_DICE_SO_NICE: "hideDiceSoNice",

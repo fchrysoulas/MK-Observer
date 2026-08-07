@@ -13,6 +13,7 @@ const MIN_SMOOTH_TIME = 0.01;
 const MAX_FRAME_DELTA = 0.1;
 const POSITION_SETTLE_EPSILON = 0.02;
 const SCALE_SETTLE_EPSILON = 0.0001;
+const VIEW_SETTLE_EPSILON = 0.001;
 
 /**
  * Smooth a scalar value toward a target using a critically damped spring.
@@ -72,8 +73,12 @@ export class ObserverCamera {
     Hooks.on("createCombat", () => this.scheduleFocus());
     Hooks.on("deleteCombat", () => this.scheduleFocus());
     Hooks.on("targetToken", () => this.scheduleFocus());
+    Hooks.on("canvasPan", (_canvas, position) => this.enforceSceneBounds(position));
     Hooks.on(`${MODULE_ID}.cameraModeChanged`, () => this.#handleModeChange());
+    Hooks.on(`${MODULE_ID}.sceneBoundsChanged`, () => this.#handleSceneBoundsChange());
     Hooks.on(`${MODULE_ID}.refocus`, () => this.scheduleFocus({ immediate: true, force: true }));
+
+    window.addEventListener("resize", () => this.enforceSceneBounds());
 
     Hooks.once("ready", () => this.#startMotionLoop());
   }
@@ -132,11 +137,35 @@ export class ObserverCamera {
     };
 
     if (![view.x, view.y, view.scale].every(Number.isFinite)) return;
-    this.targetView = view;
+    this.targetView = this.#constrainView(view);
+  }
+
+  /**
+   * Keep the observer's current manual view inside the active scene. This is
+   * deliberately applied only on the selected observer client, so it cannot
+   * constrain a GM or a normal player's canvas controls.
+   */
+  enforceSceneBounds(view = null) {
+    if (!isObserverClient() || !canvas?.ready) return;
+
+    const current = view && [view.x, view.y, view.scale].every(Number.isFinite)
+      ? { x: Number(view.x), y: Number(view.y), scale: Number(view.scale) }
+      : this.#currentView();
+    if (!current) return;
+
+    const constrained = this.#constrainView(current);
+    if (this.#viewsMatch(current, constrained)) return;
+
+    try {
+      canvas.pan(constrained);
+    } catch (error) {
+      console.error(`${MODULE_ID} | Scene-bound camera update failed`, error);
+    }
   }
 
   #handleCanvasReady() {
     this.#resetMotion({ clearTarget: true });
+    window.setTimeout(() => this.enforceSceneBounds(), 0);
     this.scheduleFocus({ immediate: true, force: true });
   }
 
@@ -145,6 +174,11 @@ export class ObserverCamera {
     if (getSetting(SETTINGS.CAMERA_MODE) === CAMERA_MODES.AUTOMATIC) {
       this.scheduleFocus({ immediate: true, force: true });
     }
+  }
+
+  #handleSceneBoundsChange() {
+    this.enforceSceneBounds();
+    this.scheduleFocus({ immediate: true, force: true });
   }
 
   #startMotionLoop() {
@@ -187,7 +221,7 @@ export class ObserverCamera {
     const current = this.#currentView();
     if (!current) return;
 
-    const target = { ...this.targetView };
+    const target = this.#constrainView(this.targetView);
     const screenDistance = Math.hypot(target.x - current.x, target.y - current.y) * current.scale;
     const panDeadZone = Math.max(0, Number(getSetting(SETTINGS.PAN_DEAD_ZONE)) || 0);
 
@@ -353,11 +387,73 @@ export class ObserverCamera {
     const maximumScale = Math.max(configuredMin, configuredMax);
     const scale = clamp(Math.min(availableWidth / width, availableHeight / height), minimumScale, maximumScale);
 
-    return {
+    return this.#constrainView({
       x: minX + width / 2,
       y: minY + height / 2,
       scale
+    });
+  }
+
+  #constrainView(view) {
+    if (!getSetting(SETTINGS.LIMIT_TO_SCENE)) return { ...view };
+
+    const rectangle = this.#sceneRectangle();
+    const viewport = this.#viewportSize();
+    if (!rectangle || !viewport) return { ...view };
+
+    // A view wider or taller than the scene would reveal the padded canvas.
+    // Raise its scale just enough to keep the scene filling the viewport.
+    const scale = Math.max(
+      Number(view.scale),
+      viewport.width / rectangle.width,
+      viewport.height / rectangle.height
+    );
+    if (!Number.isFinite(scale) || scale <= 0) return { ...view };
+
+    const halfWidth = viewport.width / (2 * scale);
+    const halfHeight = viewport.height / (2 * scale);
+    const minimumX = rectangle.left + halfWidth;
+    const maximumX = rectangle.right - halfWidth;
+    const minimumY = rectangle.top + halfHeight;
+    const maximumY = rectangle.bottom - halfHeight;
+
+    return {
+      x: minimumX > maximumX
+        ? (rectangle.left + rectangle.right) / 2
+        : clamp(Number(view.x), minimumX, maximumX),
+      y: minimumY > maximumY
+        ? (rectangle.top + rectangle.bottom) / 2
+        : clamp(Number(view.y), minimumY, maximumY),
+      scale
     };
+  }
+
+  #sceneRectangle() {
+    const dimensions = canvas.dimensions;
+    if (!dimensions) return null;
+
+    const left = Number(dimensions.sceneX ?? dimensions.rect?.x ?? 0);
+    const top = Number(dimensions.sceneY ?? dimensions.rect?.y ?? 0);
+    const width = Number(dimensions.sceneWidth ?? dimensions.rect?.width);
+    const height = Number(dimensions.sceneHeight ?? dimensions.rect?.height);
+    if (![left, top, width, height].every(Number.isFinite) || width <= 0 || height <= 0) return null;
+
+    return { left, top, width, height, right: left + width, bottom: top + height };
+  }
+
+  #viewportSize() {
+    const screen = canvas.app?.renderer?.screen;
+    const width = Number(screen?.width ?? canvas.app?.renderer?.width ?? window.innerWidth);
+    const height = Number(screen?.height ?? canvas.app?.renderer?.height ?? window.innerHeight);
+    if (![width, height].every(Number.isFinite) || width <= 0 || height <= 0) return null;
+
+    return { width, height };
+  }
+
+  #viewsMatch(first, second) {
+    return Math.abs(first.x - second.x) <= VIEW_SETTLE_EPSILON
+      && Math.abs(first.y - second.y) <= VIEW_SETTLE_EPSILON
+      && Math.abs(first.scale - second.scale) <= VIEW_SETTLE_EPSILON;
   }
 
   #tokenRectangle(token) {

@@ -15,6 +15,10 @@
         "name": "Camera Mode",
         "hint": "Automatic frames tracked tokens and the party. Directed follows GM camera movement. Disabled leaves the observer camera untouched."
       },
+      "limitToScene": {
+        "name": "Limit Observer Camera to Scene",
+        "hint": "Keep the Observer User's pan and zoom within the active scene. Automatic and Directed camera targets are also constrained. This can raise the zoom enough to avoid showing the padded canvas."
+      },
       "hideObserverUI": {
         "name": "Use Minimal Observer Interface",
         "hint": "Hide gameplay controls from the selected observer user."

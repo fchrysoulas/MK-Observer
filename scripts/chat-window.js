@@ -2,9 +2,8 @@ import { CHAT_MODES, MODULE_ID, SETTINGS } from "./constants.js";
 import { debug, getRootElement, getSetting, isObserverClient } from "./utils.js";
 
 /**
- * Manage the observer chat display across Foundry generations.
+ * Manage the observer chat display on supported Foundry generations.
  *
- * v12: SidebarTab popout inside the Foundry browser workspace.
  * v13: ApplicationV2 sidebar popout inside the Foundry browser workspace.
  * v14: The same popout, optionally detached into a native browser window.
  */
@@ -98,17 +97,11 @@ export class ObserverChatWindow {
   }
 
   #getChatTab() {
-    return ui?.sidebar?.tabs?.chat
-      ?? ui?.sidebar?.chat
-      ?? ui?.chat
-      ?? null;
+    return ui?.sidebar?.tabs?.chat ?? null;
   }
 
   #findExistingPopout(chat) {
-    return chat?.popout
-      ?? chat?._popout
-      ?? ui?.sidebar?.popouts?.chat
-      ?? null;
+    return chat?.popout ?? null;
   }
 
   async #renderPopout(chat) {
@@ -116,12 +109,6 @@ export class ObserverChatWindow {
       const result = await Promise.resolve(chat.renderPopout());
       await new Promise((resolve) => window.setTimeout(resolve, 0));
       return result ?? this.#findExistingPopout(chat);
-    }
-
-    if (typeof chat.createPopout === "function") {
-      const popout = chat.createPopout();
-      if (popout?.render) await Promise.resolve(popout.render(true, this.#positionData()));
-      return popout;
     }
 
     return null;
@@ -147,8 +134,6 @@ export class ObserverChatWindow {
   #isPopout(app) {
     return Boolean(
       app?.isPopout
-      ?? app?.popOut
-      ?? app?.options?.popOut
       ?? app?._original
     );
   }
@@ -167,7 +152,7 @@ export class ObserverChatWindow {
     root.classList.toggle("mk-observer-chat-read-only", hidden);
 
     const selectors = [
-      // Foundry core chat composer and toolbar across v12-v14.
+      // Foundry core chat composer and toolbar across v13-v14.
       "#chat-controls",
       "#chat-form",
       ".chat-controls",

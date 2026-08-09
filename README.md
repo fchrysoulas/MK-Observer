@@ -1,6 +1,6 @@
-# MK-Observer v0.5.1
+# MK-Observer v0.5.2
 
-MK-Observer is a lightweight observer and stream-view module for Foundry Virtual Tabletop v12–v14.
+MK-Observer is a lightweight observer and stream-view module for Foundry Virtual Tabletop v13–v14.
 
 See [CHANGELOG.md](CHANGELOG.md) for release history.
 
@@ -70,11 +70,11 @@ No separate chat window is opened. Sidebar visibility is controlled by **Show Si
 
 ### Floating Chat Window
 
-Opens the chat log as a movable Foundry popout. Supported in v12, v13, and v14.
+Opens the chat log as a movable Foundry popout. Supported in v13 and v14.
 
 ### Detached Browser Window
 
-On Foundry v14, the chat popout can detach into its own native browser window for capture or monitor placement. On v12 and v13, MK-Observer falls back to the floating popout.
+On Foundry v14, the chat popout can detach into its own native browser window for capture or monitor placement. On v13, MK-Observer uses the Floating Chat Window.
 
 Control the popout layout with:
 
@@ -136,8 +136,8 @@ await game.modules.get("mk-observer").api.closeChatWindow();
 
 ## Compatibility
 
-- Minimum: Foundry VTT v12
+- Minimum: Foundry VTT v13
 - Verified target: Foundry VTT v14
 - Maximum: Foundry VTT v14
 
-Chat behavior uses each version's supported sidebar popout APIs, with native detached windows available only when v14 exposes `detachWindow()`.
+Chat behavior uses the v13+ sidebar popout API, with native detached windows available only when v14 exposes `detachWindow()`.

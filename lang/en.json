@@ -45,7 +45,7 @@
       },
       "chatMode": {
         "name": "Observer Chat Window",
-        "hint": "Disabled shows no separate chat. Floating opens chat as a Foundry popout on v12-v14. Detached uses a separate browser window on v14 and falls back to a floating popout on v12-v13."
+        "hint": "Disabled shows no separate chat. Floating opens chat as a Foundry popout on v13-v14. Detached uses a separate browser window on v14 and uses a floating popout on v13."
       },
       "chatWidth": {
         "name": "Chat Window Width",

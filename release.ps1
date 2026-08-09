@@ -388,7 +388,7 @@ function Get-ChangelogSection {
   $capturing = $false
   $lines = [System.Collections.Generic.List[string]]::new()
 
-  foreach ($line in Get-Content -LiteralPath $ChangelogPath) {
+  foreach ($line in Get-Content -LiteralPath $ChangelogPath -Encoding utf8) {
     if ($line -match "^\s*##\s+") {
       if ($capturing) {
         break
@@ -473,7 +473,7 @@ if (-not (Test-Path -LiteralPath $manifestPath)) {
   throw "module.json was not found at $manifestPath"
 }
 
-$manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
+$manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding utf8 | ConvertFrom-Json
 $moduleId = [string]$manifest.id
 $version = [string]$manifest.version
 

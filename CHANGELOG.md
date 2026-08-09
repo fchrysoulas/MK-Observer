@@ -2,6 +2,12 @@
 
 All notable changes to MK-Observer are documented in this file.
 
+## [0.5.2]
+
+### Changed
+
+- Dropped Foundry VTT v12 compatibility; MK-Observer now requires Foundry VTT v13 or v14.
+
 ## [0.5.1]
 
 ### Added

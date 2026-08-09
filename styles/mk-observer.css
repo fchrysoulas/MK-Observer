@@ -87,6 +87,13 @@ body.mk-observer-native-chat-notifications {
   --mk-observer-chat-offset-y: 14px;
 }
 
+/* Foundry scales #ui-right, which otherwise makes fixed descendants use that
+   right-side panel instead of the browser viewport as their containing block. */
+body.mk-observer-native-chat-notifications #ui-right {
+  transform: none !important;
+  height: 100% !important;
+}
+
 body.mk-observer-native-chat-notifications #chat-notifications .overflow {
   position: fixed !important;
   inset: auto !important;

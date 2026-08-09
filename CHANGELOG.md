@@ -2,6 +2,12 @@
 
 All notable changes to MK-Observer are documented in this file.
 
+## [0.5.7]
+
+### Fixed
+
+- Native chat notification anchors now align to the browser viewport, including the left side of the screen, instead of Foundry's transformed right-side UI panel.
+
 ## [0.5.6]
 
 ### Added

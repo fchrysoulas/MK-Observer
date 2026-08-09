@@ -1,11 +1,16 @@
-import { CHAT_MODES, MODULE_ID, SETTINGS } from "./constants.js";
+import {
+  CHAT_MODES,
+  CHAT_NOTIFICATION_ANCHORS,
+  MODULE_ID,
+  SETTINGS
+} from "./constants.js";
 import { debug, getRootElement, getSetting, isObserverClient } from "./utils.js";
 
 /**
  * Manage the observer chat display on supported Foundry generations.
  *
- * v13: ApplicationV2 sidebar popout inside the Foundry browser workspace.
- * v14: The same popout, optionally detached into a native browser window.
+ * v13-v14: Native transient notifications or an ApplicationV2 sidebar popout.
+ * v14: The popout can optionally detach into a native browser window.
  */
 export class ObserverChatWindow {
   constructor() {
@@ -24,6 +29,7 @@ export class ObserverChatWindow {
 
     const mode = getSetting(SETTINGS.CHAT_MODE);
     if (mode === CHAT_MODES.DISABLED) return null;
+    if (mode === CHAT_MODES.NOTIFICATIONS) return this.#configureNativeNotifications();
 
     this.opening = true;
     try {
@@ -78,14 +84,24 @@ export class ObserverChatWindow {
 
   async #onReady() {
     if (!isObserverClient()) return;
-    if (getSetting(SETTINGS.CHAT_MODE) === CHAT_MODES.DISABLED) return;
+    const mode = getSetting(SETTINGS.CHAT_MODE);
+    if (mode === CHAT_MODES.DISABLED) return;
+    if (mode === CHAT_MODES.NOTIFICATIONS) {
+      this.#configureNativeNotifications();
+      return;
+    }
 
     // Let the sidebar complete its own first render before asking for a popout.
     window.setTimeout(() => this.open(), 250);
   }
 
   #onRenderChatLog(app, html) {
-    if (!isObserverClient() || !this.#isPopout(app)) return;
+    if (!isObserverClient()) return;
+    if (getSetting(SETTINGS.CHAT_MODE) === CHAT_MODES.NOTIFICATIONS) {
+      this.#configureNativeNotifications();
+      return;
+    }
+    if (!this.#isPopout(app)) return;
 
     this.chatApp = app;
     const root = getRootElement(html) ?? getRootElement(app?.element);
@@ -100,6 +116,41 @@ export class ObserverChatWindow {
     return ui?.chat
       ?? ui?.sidebar?.tabs?.chat
       ?? null;
+  }
+
+  #configureNativeNotifications() {
+    if (!document.body) return null;
+
+    const anchors = Object.values(CHAT_NOTIFICATION_ANCHORS);
+    const configuredAnchor = getSetting(SETTINGS.CHAT_NOTIFICATION_ANCHOR);
+    const anchor = anchors.includes(configuredAnchor)
+      ? configuredAnchor
+      : CHAT_NOTIFICATION_ANCHORS.BOTTOM_RIGHT;
+    const offsetX = Number(getSetting(SETTINGS.CHAT_NOTIFICATION_OFFSET_X)) || 0;
+    const offsetY = Number(getSetting(SETTINGS.CHAT_NOTIFICATION_OFFSET_Y)) || 0;
+
+    document.body.classList.add("mk-observer-native-chat-notifications");
+    for (const value of anchors) {
+      document.body.classList.toggle(`mk-observer-chat-anchor-${value}`, value === anchor);
+    }
+    document.body.classList.toggle(
+      "mk-observer-native-chat-read-only",
+      Boolean(getSetting(SETTINGS.CHAT_READ_ONLY))
+    );
+    document.body.style.setProperty("--mk-observer-chat-offset-x", `${offsetX}px`);
+    document.body.style.setProperty("--mk-observer-chat-offset-y", `${offsetY}px`);
+
+    // Core suppresses transient chat cards while the sidebar is expanded on
+    // the chat tab. Keep its internal state aligned with our hidden sidebar.
+    if (!getSetting(SETTINGS.SHOW_SIDEBAR) && ui?.sidebar?.expanded) {
+      ui.sidebar.collapse?.();
+    }
+
+    const notifications = document.getElementById("chat-notifications");
+    this.#applyReadOnly(notifications);
+    this.#observeChatControls(notifications);
+    debug("Native observer chat notifications configured", { anchor, offsetX, offsetY });
+    return notifications;
   }
 
   #findExistingPopout(chat) {

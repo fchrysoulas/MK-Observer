@@ -1,6 +1,6 @@
 export const MODULE_ID = "mk-observer";
 export const MODULE_TITLE = "MK-Observer";
-export const MODULE_VERSION = "0.5.5";
+export const MODULE_VERSION = "0.5.6";
 export const SOCKET_NAME = `module.${MODULE_ID}`;
 
 export const CAMERA_MODES = Object.freeze({
@@ -11,8 +11,21 @@ export const CAMERA_MODES = Object.freeze({
 
 export const CHAT_MODES = Object.freeze({
   DISABLED: "disabled",
+  NOTIFICATIONS: "notifications",
   POPOUT: "popout",
   DETACHED: "detached"
+});
+
+export const CHAT_NOTIFICATION_ANCHORS = Object.freeze({
+  TOP_LEFT: "top-left",
+  TOP_CENTER: "top-center",
+  TOP_RIGHT: "top-right",
+  CENTER_LEFT: "center-left",
+  CENTER: "center",
+  CENTER_RIGHT: "center-right",
+  BOTTOM_LEFT: "bottom-left",
+  BOTTOM_CENTER: "bottom-center",
+  BOTTOM_RIGHT: "bottom-right"
 });
 
 export const SETTINGS = Object.freeze({
@@ -36,6 +49,9 @@ export const SETTINGS = Object.freeze({
   CHAT_HEIGHT: "chatHeight",
   CHAT_LEFT: "chatLeft",
   CHAT_TOP: "chatTop",
+  CHAT_NOTIFICATION_ANCHOR: "chatNotificationAnchor",
+  CHAT_NOTIFICATION_OFFSET_X: "chatNotificationOffsetX",
+  CHAT_NOTIFICATION_OFFSET_Y: "chatNotificationOffsetY",
   CHAT_READ_ONLY: "chatReadOnly",
   TRACK_COMBAT: "trackCombat",
   INCLUDE_TARGETS: "includeTargets",

@@ -9,7 +9,7 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 - Provides a dedicated observer/stream user.
 - Offers automatic, directed, or disabled camera modes.
 - Supports manual token/group tracking from the Token HUD.
-- Includes optional observer chat as a floating or detached window.
+- Includes optional observer chat as native notifications, a floating window, or a detached window.
 - Preserves chat content while optionally hiding Dice So Nice 3D dice and chat controls.
 - Works without extra module dependencies.
 
@@ -40,7 +40,7 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 3. Open **Configure Settings → Module Settings → MK-Observer**.
 4. Select the dedicated user under **Observer User**.
 5. Choose the camera mode and smoothing values.
-6. Configure **Observer Chat Window** if chat should appear separately.
+6. Configure **Observer Chat Display** if chat should appear separately.
 7. Reload Foundry after changing observer or interface settings.
 8. Log in as that user from OBS, another browser profile, or a second device.
 
@@ -62,11 +62,15 @@ The observer camera stays manual and never moves automatically.
 
 Enable **Limit Observer Camera to Scene** to keep only the **Observer User** inside the active scene's bounds. It prevents manual pan and zoom from exposing the padded canvas, and constrains both Automatic and Directed camera targets. Optional top, bottom, left, and right margins range from -500 to 500 screen pixels and act as padding on the visible viewport at every zoom level. Positive values keep the view farther inside an edge; negative values permit the view beyond it. The setting may zoom in as needed to satisfy those boundaries; GMs and other players are unaffected.
 
-## Observer chat window modes
+## Observer chat display modes
 
 ### Disabled
 
 No separate chat window is opened. Sidebar visibility is controlled by **Show Sidebar**.
+
+### Native Chat Notifications
+
+Keeps Foundry's transient notification cards for new chat activity and rolls without opening a persistent chat window. Choose a top, center, or bottom anchor and fine-tune it with 1px horizontal and vertical offsets. The native notification tray remains available when **Show Sidebar** is disabled.
 
 ### Floating Chat Window
 
@@ -129,7 +133,7 @@ game.modules.get("mk-observer").api.requestObserverFocus();
 // Clear all manual tracking flags from the current scene as GM.
 await game.modules.get("mk-observer").api.clearTrackedTokens();
 
-// Open or close the configured observer chat window locally.
+// Open the configured observer chat display, or close its floating/detached window.
 await game.modules.get("mk-observer").api.openChatWindow();
 await game.modules.get("mk-observer").api.closeChatWindow();
 ```
@@ -140,4 +144,4 @@ await game.modules.get("mk-observer").api.closeChatWindow();
 - Verified target: Foundry VTT v14
 - Maximum: Foundry VTT v14
 
-Chat behavior uses the v13+ sidebar popout API, with native detached windows available only when v14 exposes `detachWindow()`.
+Native notification mode reuses Foundry's v13+ transient chat tray. Floating chat uses the v13+ sidebar popout API, with detached windows available only when v14 exposes `detachWindow()`.

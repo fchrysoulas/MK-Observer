@@ -60,8 +60,8 @@
         "hint": "Keep the macro hotbar visible on the observer client."
       },
       "chatMode": {
-        "name": "Observer Chat Window",
-        "hint": "Disabled shows no separate chat. Floating opens chat as a Foundry popout on v13-v14. Detached uses a separate browser window on v14 and uses a floating popout on v13."
+        "name": "Observer Chat Display",
+        "hint": "Disabled shows no separate chat. Native Notifications keeps Foundry's transient chat cards without opening a window. Floating opens a Foundry popout on v13-v14. Detached uses a separate browser window on v14 and a floating popout on v13."
       },
       "chatWidth": {
         "name": "Chat Window Width",
@@ -79,9 +79,21 @@
         "name": "Chat Window Top Position",
         "hint": "Initial vertical position of the floating chat window in pixels. Native v14 detached windows may let the browser control the final position."
       },
+      "chatNotificationAnchor": {
+        "name": "Native Notification Anchor",
+        "hint": "Screen anchor used for Foundry's transient chat and roll notification cards."
+      },
+      "chatNotificationOffsetX": {
+        "name": "Native Notification Horizontal Offset",
+        "hint": "Horizontal offset from the selected notification anchor in pixels. Positive values move right from left or center anchors and inward from right anchors."
+      },
+      "chatNotificationOffsetY": {
+        "name": "Native Notification Vertical Offset",
+        "hint": "Vertical offset from the selected notification anchor in pixels. Positive values move down from top or center anchors and inward from bottom anchors."
+      },
       "chatReadOnly": {
         "name": "Hide Chat User Controls",
-        "hint": "Hide the chat toolbar, message composer, and Dice Tray controls in the observer chat window. Existing and new chat roll cards, formulas, totals, and messages remain visible."
+        "hint": "Hide the chat toolbar, message composer, and Dice Tray controls in the observer chat display. Existing and new chat roll cards, formulas, totals, and messages remain visible."
       },
       "trackCombat": {
         "name": "Automatic Combat Focus",
@@ -158,8 +170,20 @@
     },
     "chatModes": {
       "disabled": "Disabled",
+      "notifications": "Native Chat Notifications",
       "popout": "Floating Chat Window",
       "detached": "Detached Browser Window"
+    },
+    "chatNotificationAnchors": {
+      "topLeft": "Top Left",
+      "topCenter": "Top Center",
+      "topRight": "Top Right",
+      "centerLeft": "Center Left",
+      "center": "Center",
+      "centerRight": "Center Right",
+      "bottomLeft": "Bottom Left",
+      "bottomCenter": "Bottom Center",
+      "bottomRight": "Bottom Right"
     }
   }
 }

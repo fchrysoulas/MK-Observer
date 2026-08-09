@@ -1,4 +1,10 @@
-import { CAMERA_MODES, CHAT_MODES, MODULE_ID, SETTINGS } from "./constants.js";
+import {
+  CAMERA_MODES,
+  CHAT_MODES,
+  CHAT_NOTIFICATION_ANCHORS,
+  MODULE_ID,
+  SETTINGS
+} from "./constants.js";
 
 function key(setting, part) {
   return `${MODULE_ID}.settings.${setting}.${part}`;
@@ -137,6 +143,7 @@ export function registerSettings() {
     type: String,
     choices: {
       [CHAT_MODES.DISABLED]: `${MODULE_ID}.chatModes.disabled`,
+      [CHAT_MODES.NOTIFICATIONS]: `${MODULE_ID}.chatModes.notifications`,
       [CHAT_MODES.POPOUT]: `${MODULE_ID}.chatModes.popout`,
       [CHAT_MODES.DETACHED]: `${MODULE_ID}.chatModes.detached`
     },
@@ -190,6 +197,45 @@ export function registerSettings() {
     range: { min: -2000, max: 4000, step: 1 },
     default: 80
   });
+
+  register(SETTINGS.CHAT_NOTIFICATION_ANCHOR, {
+    name: key(SETTINGS.CHAT_NOTIFICATION_ANCHOR, "name"),
+    hint: key(SETTINGS.CHAT_NOTIFICATION_ANCHOR, "hint"),
+    scope: "world",
+    config: true,
+    restricted: true,
+    requiresReload: true,
+    type: String,
+    choices: {
+      [CHAT_NOTIFICATION_ANCHORS.TOP_LEFT]: `${MODULE_ID}.chatNotificationAnchors.topLeft`,
+      [CHAT_NOTIFICATION_ANCHORS.TOP_CENTER]: `${MODULE_ID}.chatNotificationAnchors.topCenter`,
+      [CHAT_NOTIFICATION_ANCHORS.TOP_RIGHT]: `${MODULE_ID}.chatNotificationAnchors.topRight`,
+      [CHAT_NOTIFICATION_ANCHORS.CENTER_LEFT]: `${MODULE_ID}.chatNotificationAnchors.centerLeft`,
+      [CHAT_NOTIFICATION_ANCHORS.CENTER]: `${MODULE_ID}.chatNotificationAnchors.center`,
+      [CHAT_NOTIFICATION_ANCHORS.CENTER_RIGHT]: `${MODULE_ID}.chatNotificationAnchors.centerRight`,
+      [CHAT_NOTIFICATION_ANCHORS.BOTTOM_LEFT]: `${MODULE_ID}.chatNotificationAnchors.bottomLeft`,
+      [CHAT_NOTIFICATION_ANCHORS.BOTTOM_CENTER]: `${MODULE_ID}.chatNotificationAnchors.bottomCenter`,
+      [CHAT_NOTIFICATION_ANCHORS.BOTTOM_RIGHT]: `${MODULE_ID}.chatNotificationAnchors.bottomRight`
+    },
+    default: CHAT_NOTIFICATION_ANCHORS.BOTTOM_RIGHT
+  });
+
+  for (const [setting, defaultValue] of [
+    [SETTINGS.CHAT_NOTIFICATION_OFFSET_X, 16],
+    [SETTINGS.CHAT_NOTIFICATION_OFFSET_Y, 14]
+  ]) {
+    register(setting, {
+      name: key(setting, "name"),
+      hint: key(setting, "hint"),
+      scope: "world",
+      config: true,
+      restricted: true,
+      requiresReload: true,
+      type: Number,
+      range: { min: -2000, max: 4000, step: 1 },
+      default: defaultValue
+    });
+  }
 
   register(SETTINGS.CHAT_READ_ONLY, {
     name: key(SETTINGS.CHAT_READ_ONLY, "name"),

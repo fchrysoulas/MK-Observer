@@ -79,8 +79,81 @@ body.mk-observer-client .application {
 }
 
 /* ------------------------------------------------------------ */
-/* Observer chat popout                                          */
+/* Observer chat                                                 */
 /* ------------------------------------------------------------ */
+
+body.mk-observer-native-chat-notifications {
+  --mk-observer-chat-offset-x: 16px;
+  --mk-observer-chat-offset-y: 14px;
+}
+
+body.mk-observer-native-chat-notifications #chat-notifications .overflow {
+  position: fixed !important;
+  inset: auto !important;
+  width: var(--sidebar-width, 300px) !important;
+  height: auto !important;
+  max-height: calc(100vh - 32px) !important;
+  z-index: var(--z-index-ui, 60);
+}
+
+body.mk-observer-chat-anchor-top-left #chat-notifications .overflow {
+  top: var(--mk-observer-chat-offset-y) !important;
+  left: var(--mk-observer-chat-offset-x) !important;
+}
+
+body.mk-observer-chat-anchor-top-center #chat-notifications .overflow {
+  top: var(--mk-observer-chat-offset-y) !important;
+  left: calc(50% + var(--mk-observer-chat-offset-x)) !important;
+  transform: translateX(-50%);
+}
+
+body.mk-observer-chat-anchor-top-right #chat-notifications .overflow {
+  top: var(--mk-observer-chat-offset-y) !important;
+  right: var(--mk-observer-chat-offset-x) !important;
+}
+
+body.mk-observer-chat-anchor-center-left #chat-notifications .overflow {
+  top: calc(50% + var(--mk-observer-chat-offset-y)) !important;
+  left: var(--mk-observer-chat-offset-x) !important;
+  transform: translateY(-50%);
+}
+
+body.mk-observer-chat-anchor-center #chat-notifications .overflow {
+  top: calc(50% + var(--mk-observer-chat-offset-y)) !important;
+  left: calc(50% + var(--mk-observer-chat-offset-x)) !important;
+  transform: translate(-50%, -50%);
+}
+
+body.mk-observer-chat-anchor-center-right #chat-notifications .overflow {
+  top: calc(50% + var(--mk-observer-chat-offset-y)) !important;
+  right: var(--mk-observer-chat-offset-x) !important;
+  transform: translateY(-50%);
+}
+
+body.mk-observer-chat-anchor-bottom-left #chat-notifications .overflow {
+  bottom: var(--mk-observer-chat-offset-y) !important;
+  left: var(--mk-observer-chat-offset-x) !important;
+}
+
+body.mk-observer-chat-anchor-bottom-center #chat-notifications .overflow {
+  bottom: var(--mk-observer-chat-offset-y) !important;
+  left: calc(50% + var(--mk-observer-chat-offset-x)) !important;
+  transform: translateX(-50%);
+}
+
+body.mk-observer-chat-anchor-bottom-right #chat-notifications .overflow {
+  right: var(--mk-observer-chat-offset-x) !important;
+  bottom: var(--mk-observer-chat-offset-y) !important;
+}
+
+body.mk-observer-native-chat-notifications.mk-observer-native-chat-read-only #chat-notifications .chat-input,
+body.mk-observer-native-chat-notifications.mk-observer-native-chat-read-only #chat-notifications #chat-controls,
+body.mk-observer-native-chat-notifications.mk-observer-native-chat-read-only #ui-right #chat-message,
+body.mk-observer-native-chat-notifications.mk-observer-native-chat-read-only #ui-right #chat-controls {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
 
 .mk-observer-chat-window {
   min-width: 280px;

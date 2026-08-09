@@ -2,6 +2,13 @@
 
 All notable changes to MK-Observer are documented in this file.
 
+## [0.5.6]
+
+### Added
+
+- Added a Native Chat Notifications observer mode that preserves Foundry's transient chat and roll cards without opening a persistent chat window.
+- Added nine screen anchors with independent one-pixel horizontal and vertical offsets for positioning native chat notifications.
+
 ## [0.5.5]
 
 ### Changed

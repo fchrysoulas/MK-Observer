@@ -16,15 +16,22 @@ const SCALE_SETTLE_EPSILON = 0.0001;
 const VIEW_SETTLE_EPSILON = 0.001;
 
 function fitMargins(first, second, span) {
-  const firstMargin = Math.max(0, Number(first) || 0);
-  const secondMargin = Math.max(0, Number(second) || 0);
-  const total = firstMargin + secondMargin;
-  const maximumTotal = Math.max(span - Math.min(span, 1), 0);
-  const factor = total > maximumTotal && total > 0 ? maximumTotal / total : 1;
+  const firstValue = Number(first);
+  const secondValue = Number(second);
+  const firstMargin = Number.isFinite(firstValue) ? firstValue : 0;
+  const secondMargin = Number.isFinite(secondValue) ? secondValue : 0;
+  const firstOutset = Math.min(firstMargin, 0);
+  const secondOutset = Math.min(secondMargin, 0);
+  const firstInset = Math.max(firstMargin, 0);
+  const secondInset = Math.max(secondMargin, 0);
+  const insetTotal = firstInset + secondInset;
+  const expandedSpan = span - firstOutset - secondOutset;
+  const maximumInset = Math.max(expandedSpan - Math.min(expandedSpan, 1), 0);
+  const factor = insetTotal > maximumInset && insetTotal > 0 ? maximumInset / insetTotal : 1;
 
   return {
-    first: firstMargin * factor,
-    second: secondMargin * factor
+    first: firstOutset + firstInset * factor,
+    second: secondOutset + secondInset * factor
   };
 }
 

@@ -69,7 +69,7 @@ export function registerSettings() {
       config: true,
       restricted: true,
       type: Number,
-      range: { min: 0, max: 10000, step: 10 },
+      range: { min: -500, max: 500, step: 10 },
       default: 0,
       onChange: () => Hooks.callAll(`${MODULE_ID}.sceneBoundsChanged`)
     });

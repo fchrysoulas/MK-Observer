@@ -21,19 +21,19 @@
       },
       "sceneMarginTop": {
         "name": "Scene Limit Top Margin",
-        "hint": "Move the observer camera's top limit inward by this many scene pixels. Only used when Limit Observer Camera to Scene is enabled."
+        "hint": "Adjust the observer camera's top limit in scene pixels. Positive values move it inward; negative values move it outward. Only used when Limit Observer Camera to Scene is enabled."
       },
       "sceneMarginBottom": {
         "name": "Scene Limit Bottom Margin",
-        "hint": "Move the observer camera's bottom limit inward by this many scene pixels. Only used when Limit Observer Camera to Scene is enabled."
+        "hint": "Adjust the observer camera's bottom limit in scene pixels. Positive values move it inward; negative values move it outward. Only used when Limit Observer Camera to Scene is enabled."
       },
       "sceneMarginLeft": {
         "name": "Scene Limit Left Margin",
-        "hint": "Move the observer camera's left limit inward by this many scene pixels. Only used when Limit Observer Camera to Scene is enabled."
+        "hint": "Adjust the observer camera's left limit in scene pixels. Positive values move it inward; negative values move it outward. Only used when Limit Observer Camera to Scene is enabled."
       },
       "sceneMarginRight": {
         "name": "Scene Limit Right Margin",
-        "hint": "Move the observer camera's right limit inward by this many scene pixels. Only used when Limit Observer Camera to Scene is enabled."
+        "hint": "Adjust the observer camera's right limit in scene pixels. Positive values move it inward; negative values move it outward. Only used when Limit Observer Camera to Scene is enabled."
       },
       "hideObserverUI": {
         "name": "Use Minimal Observer Interface",

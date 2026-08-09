@@ -2,6 +2,12 @@
 
 All notable changes to MK-Observer are documented in this file.
 
+## [0.5.4]
+
+### Changed
+
+- Scene-limit margins now accept values from -500 to 500 pixels; negative values expand a camera limit outward and positive values move it inward.
+
 ## [0.5.3]
 
 ### Added

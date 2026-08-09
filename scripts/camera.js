@@ -15,6 +15,19 @@ const POSITION_SETTLE_EPSILON = 0.02;
 const SCALE_SETTLE_EPSILON = 0.0001;
 const VIEW_SETTLE_EPSILON = 0.001;
 
+function fitMargins(first, second, span) {
+  const firstMargin = Math.max(0, Number(first) || 0);
+  const secondMargin = Math.max(0, Number(second) || 0);
+  const total = firstMargin + secondMargin;
+  const maximumTotal = Math.max(span - Math.min(span, 1), 0);
+  const factor = total > maximumTotal && total > 0 ? maximumTotal / total : 1;
+
+  return {
+    first: firstMargin * factor,
+    second: secondMargin * factor
+  };
+}
+
 /**
  * Smooth a scalar value toward a target using a critically damped spring.
  * This is frame-rate independent and avoids the repeated start/stop motion
@@ -438,7 +451,29 @@ export class ObserverCamera {
     const height = Number(dimensions.sceneHeight ?? dimensions.rect?.height);
     if (![left, top, width, height].every(Number.isFinite) || width <= 0 || height <= 0) return null;
 
-    return { left, top, width, height, right: left + width, bottom: top + height };
+    const horizontalMargins = fitMargins(
+      getSetting(SETTINGS.SCENE_MARGIN_LEFT),
+      getSetting(SETTINGS.SCENE_MARGIN_RIGHT),
+      width
+    );
+    const verticalMargins = fitMargins(
+      getSetting(SETTINGS.SCENE_MARGIN_TOP),
+      getSetting(SETTINGS.SCENE_MARGIN_BOTTOM),
+      height
+    );
+    const boundedLeft = left + horizontalMargins.first;
+    const boundedTop = top + verticalMargins.first;
+    const boundedWidth = width - horizontalMargins.first - horizontalMargins.second;
+    const boundedHeight = height - verticalMargins.first - verticalMargins.second;
+
+    return {
+      left: boundedLeft,
+      top: boundedTop,
+      width: boundedWidth,
+      height: boundedHeight,
+      right: boundedLeft + boundedWidth,
+      bottom: boundedTop + boundedHeight
+    };
   }
 
   #viewportSize() {

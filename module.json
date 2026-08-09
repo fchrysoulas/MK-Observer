@@ -2,7 +2,7 @@
   "id": "mk-observer",
   "title": "MK-Observer",
   "description": "A minimal observer and stream view for Foundry VTT with cinematic camera tracking, combat focus, manual token tracking, GM-directed camera control, optional detached chat, observer-only Dice So Nice suppression, and robust observer/chat control hiding.",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "authors": [
     {
       "name": "Mikrokouneli"
@@ -12,7 +12,7 @@
   "compatibleCoreVersion": "14",
   "url": "https://github.com/fchrysoulas/MK-Observer",
   "manifest": "https://github.com/fchrysoulas/MK-Observer/releases/latest/download/module.json",
-  "download": "https://github.com/fchrysoulas/MK-Observer/releases/download/v0.5.2/mk-observer.zip",
+  "download": "https://github.com/fchrysoulas/MK-Observer/releases/download/v0.5.3/mk-observer.zip",
   "readme": "README.md",
   "bugs": "https://github.com/fchrysoulas/MK-Observer/issues",
   "compatibility": {

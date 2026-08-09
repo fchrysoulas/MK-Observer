@@ -97,11 +97,15 @@ export class ObserverChatWindow {
   }
 
   #getChatTab() {
-    return ui?.sidebar?.tabs?.chat ?? null;
+    return ui?.chat
+      ?? ui?.sidebar?.tabs?.chat
+      ?? null;
   }
 
   #findExistingPopout(chat) {
-    return chat?.popout ?? null;
+    return chat?.popout
+      ?? ui?.sidebar?.popouts?.chat
+      ?? null;
   }
 
   async #renderPopout(chat) {

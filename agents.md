@@ -6,8 +6,9 @@ MK-Observer is a Foundry VTT module for observer and stream camera control. Its 
 
 - automatic and GM-directed camera framing
 - manual token and group tracking
+- observer-only scene limits with per-edge pixel margins
 - optional floating or detached observer chat windows
-- compatibility with Foundry VTT v12 through v14
+- compatibility with Foundry VTT v13 and v14
 
 ## Repository map
 
@@ -20,7 +21,7 @@ MK-Observer is a Foundry VTT module for observer and stream camera control. Its 
 ## Development principles
 
 - Keep changes focused and avoid unrelated refactors.
-- Prefer Foundry APIs that remain stable across v12, v13, and v14.
+- Prefer Foundry APIs that remain stable across v13 and v14.
 - Avoid new module dependencies unless a feature requires one.
 - Preserve existing behavior unless the requested change explicitly replaces it.
 - Keep user-facing strings localized in both `lang/en.json` and `lang/el.json`.
@@ -44,11 +45,12 @@ Use these labels consistently in code, localization, and documentation:
 
 ## Validation
 
-- Test against Foundry VTT v12, v13, and v14 when possible.
+- Test against Foundry VTT v13 and v14 when possible.
 - Verify observer-only behavior with a dedicated non-GM user.
 - Exercise Automatic, Directed, and Disabled camera modes when camera logic changes.
+- Verify top, bottom, left, and right scene-limit margins for manual, Automatic, and Directed camera movement when camera bounds change.
 - Check both Floating Chat Window and Detached Browser Window behavior when chat logic changes.
-- Confirm v12 and v13 fallbacks when using APIs introduced in v14.
+- Confirm the v13 Floating Chat Window fallback when using detached-window APIs introduced in v14.
 
 If full Foundry testing is unavailable, perform relevant static checks and clearly report what was not tested.
 

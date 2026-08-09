@@ -17,7 +17,23 @@
       },
       "limitToScene": {
         "name": "Limit Observer Camera to Scene",
-        "hint": "Keep the Observer User's pan and zoom within the active scene. Automatic and Directed camera targets are also constrained. This can raise the zoom enough to avoid showing the padded canvas."
+        "hint": "Keep the Observer User's pan and zoom within the active scene and the configured scene limit margins. Automatic and Directed camera targets are also constrained. This can raise the zoom enough to avoid showing the padded canvas."
+      },
+      "sceneMarginTop": {
+        "name": "Scene Limit Top Margin",
+        "hint": "Move the observer camera's top limit inward by this many scene pixels. Only used when Limit Observer Camera to Scene is enabled."
+      },
+      "sceneMarginBottom": {
+        "name": "Scene Limit Bottom Margin",
+        "hint": "Move the observer camera's bottom limit inward by this many scene pixels. Only used when Limit Observer Camera to Scene is enabled."
+      },
+      "sceneMarginLeft": {
+        "name": "Scene Limit Left Margin",
+        "hint": "Move the observer camera's left limit inward by this many scene pixels. Only used when Limit Observer Camera to Scene is enabled."
+      },
+      "sceneMarginRight": {
+        "name": "Scene Limit Right Margin",
+        "hint": "Move the observer camera's right limit inward by this many scene pixels. Only used when Limit Observer Camera to Scene is enabled."
       },
       "hideObserverUI": {
         "name": "Use Minimal Observer Interface",

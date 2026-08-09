@@ -56,6 +56,25 @@ export function registerSettings() {
     onChange: () => Hooks.callAll(`${MODULE_ID}.sceneBoundsChanged`)
   });
 
+  for (const setting of [
+    SETTINGS.SCENE_MARGIN_TOP,
+    SETTINGS.SCENE_MARGIN_BOTTOM,
+    SETTINGS.SCENE_MARGIN_LEFT,
+    SETTINGS.SCENE_MARGIN_RIGHT
+  ]) {
+    register(setting, {
+      name: key(setting, "name"),
+      hint: key(setting, "hint"),
+      scope: "world",
+      config: true,
+      restricted: true,
+      type: Number,
+      range: { min: 0, max: 10000, step: 10 },
+      default: 0,
+      onChange: () => Hooks.callAll(`${MODULE_ID}.sceneBoundsChanged`)
+    });
+  }
+
   register(SETTINGS.HIDE_OBSERVER_UI, {
     name: key(SETTINGS.HIDE_OBSERVER_UI, "name"),
     hint: key(SETTINGS.HIDE_OBSERVER_UI, "hint"),

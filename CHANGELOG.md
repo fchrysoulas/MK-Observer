@@ -2,6 +2,20 @@
 
 All notable changes to MK-Observer are documented in this file.
 
+## [0.5.3]
+
+### Added
+
+- Added independent top, bottom, left, and right scene-limit margins in pixels.
+
+### Fixed
+
+- Restored the Floating Chat Window on Foundry VTT v13 and v14 by resolving the supported chat UI and sidebar popout references.
+
+### Changed
+
+- Updated the MIT license copyright attribution.
+
 ## [0.5.2]
 
 ### Changed

@@ -1,6 +1,6 @@
 export const MODULE_ID = "mk-observer";
 export const MODULE_TITLE = "MK-Observer";
-export const MODULE_VERSION = "0.5.4";
+export const MODULE_VERSION = "0.5.5";
 export const SOCKET_NAME = `module.${MODULE_ID}`;
 
 export const CAMERA_MODES = Object.freeze({

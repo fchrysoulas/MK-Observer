@@ -15,23 +15,22 @@ const POSITION_SETTLE_EPSILON = 0.02;
 const SCALE_SETTLE_EPSILON = 0.0001;
 const VIEW_SETTLE_EPSILON = 0.001;
 
-function fitMargins(first, second, span) {
+function fitPadding(first, second, span) {
   const firstValue = Number(first);
   const secondValue = Number(second);
-  const firstMargin = Number.isFinite(firstValue) ? firstValue : 0;
-  const secondMargin = Number.isFinite(secondValue) ? secondValue : 0;
-  const firstOutset = Math.min(firstMargin, 0);
-  const secondOutset = Math.min(secondMargin, 0);
-  const firstInset = Math.max(firstMargin, 0);
-  const secondInset = Math.max(secondMargin, 0);
-  const insetTotal = firstInset + secondInset;
-  const expandedSpan = span - firstOutset - secondOutset;
-  const maximumInset = Math.max(expandedSpan - Math.min(expandedSpan, 1), 0);
-  const factor = insetTotal > maximumInset && insetTotal > 0 ? maximumInset / insetTotal : 1;
+  const firstPadding = Number.isFinite(firstValue) ? firstValue : 0;
+  const secondPadding = Number.isFinite(secondValue) ? secondValue : 0;
+  const firstInset = Math.max(firstPadding, 0);
+  const secondInset = Math.max(secondPadding, 0);
+  const firstOutset = Math.max(-firstPadding, 0);
+  const secondOutset = Math.max(-secondPadding, 0);
+  const outsetTotal = firstOutset + secondOutset;
+  const maximumOutset = Math.max(span + firstInset + secondInset - 1, 0);
+  const factor = outsetTotal > maximumOutset && outsetTotal > 0 ? maximumOutset / outsetTotal : 1;
 
   return {
-    first: firstOutset + firstInset * factor,
-    second: secondOutset + secondInset * factor
+    first: firstInset - firstOutset * factor,
+    second: secondInset - secondOutset * factor
   };
 }
 
@@ -421,21 +420,39 @@ export class ObserverCamera {
     const viewport = this.#viewportSize();
     if (!rectangle || !viewport) return { ...view };
 
-    // A view wider or taller than the scene would reveal the padded canvas.
-    // Raise its scale just enough to keep the scene filling the viewport.
+    const horizontalPadding = fitPadding(
+      getSetting(SETTINGS.SCENE_MARGIN_LEFT),
+      getSetting(SETTINGS.SCENE_MARGIN_RIGHT),
+      viewport.width
+    );
+    const verticalPadding = fitPadding(
+      getSetting(SETTINGS.SCENE_MARGIN_TOP),
+      getSetting(SETTINGS.SCENE_MARGIN_BOTTOM),
+      viewport.height
+    );
+    const leftPadding = horizontalPadding.first;
+    const rightPadding = horizontalPadding.second;
+    const topPadding = verticalPadding.first;
+    const bottomPadding = verticalPadding.second;
+    const paddedViewportWidth = viewport.width + leftPadding + rightPadding;
+    const paddedViewportHeight = viewport.height + topPadding + bottomPadding;
+
+    // Apply the margin values as fixed screen-space padding. Raise the scale
+    // when needed so the padded viewport fits within the scene; negative
+    // values deliberately reduce that requirement to allow controlled overscan.
     const scale = Math.max(
       Number(view.scale),
-      viewport.width / rectangle.width,
-      viewport.height / rectangle.height
+      paddedViewportWidth / rectangle.width,
+      paddedViewportHeight / rectangle.height
     );
     if (!Number.isFinite(scale) || scale <= 0) return { ...view };
 
-    const halfWidth = viewport.width / (2 * scale);
-    const halfHeight = viewport.height / (2 * scale);
-    const minimumX = rectangle.left + halfWidth;
-    const maximumX = rectangle.right - halfWidth;
-    const minimumY = rectangle.top + halfHeight;
-    const maximumY = rectangle.bottom - halfHeight;
+    const halfWidth = viewport.width / 2;
+    const halfHeight = viewport.height / 2;
+    const minimumX = rectangle.left + (halfWidth + leftPadding) / scale;
+    const maximumX = rectangle.right - (halfWidth + rightPadding) / scale;
+    const minimumY = rectangle.top + (halfHeight + topPadding) / scale;
+    const maximumY = rectangle.bottom - (halfHeight + bottomPadding) / scale;
 
     return {
       x: minimumX > maximumX
@@ -458,29 +475,7 @@ export class ObserverCamera {
     const height = Number(dimensions.sceneHeight ?? dimensions.rect?.height);
     if (![left, top, width, height].every(Number.isFinite) || width <= 0 || height <= 0) return null;
 
-    const horizontalMargins = fitMargins(
-      getSetting(SETTINGS.SCENE_MARGIN_LEFT),
-      getSetting(SETTINGS.SCENE_MARGIN_RIGHT),
-      width
-    );
-    const verticalMargins = fitMargins(
-      getSetting(SETTINGS.SCENE_MARGIN_TOP),
-      getSetting(SETTINGS.SCENE_MARGIN_BOTTOM),
-      height
-    );
-    const boundedLeft = left + horizontalMargins.first;
-    const boundedTop = top + verticalMargins.first;
-    const boundedWidth = width - horizontalMargins.first - horizontalMargins.second;
-    const boundedHeight = height - verticalMargins.first - verticalMargins.second;
-
-    return {
-      left: boundedLeft,
-      top: boundedTop,
-      width: boundedWidth,
-      height: boundedHeight,
-      right: boundedLeft + boundedWidth,
-      bottom: boundedTop + boundedHeight
-    };
+    return { left, top, width, height, right: left + width, bottom: top + height };
   }
 
   #viewportSize() {

@@ -69,7 +69,7 @@ export function registerSettings() {
       config: true,
       restricted: true,
       type: Number,
-      range: { min: -500, max: 500, step: 10 },
+      range: { min: -500, max: 500, step: 1 },
       default: 0,
       onChange: () => Hooks.callAll(`${MODULE_ID}.sceneBoundsChanged`)
     });
@@ -151,7 +151,7 @@ export function registerSettings() {
     restricted: true,
     requiresReload: true,
     type: Number,
-    range: { min: 280, max: 1000, step: 10 },
+    range: { min: 280, max: 1000, step: 1 },
     default: 380
   });
 
@@ -163,7 +163,7 @@ export function registerSettings() {
     restricted: true,
     requiresReload: true,
     type: Number,
-    range: { min: 240, max: 1200, step: 10 },
+    range: { min: 240, max: 1200, step: 1 },
     default: 600
   });
 
@@ -175,7 +175,7 @@ export function registerSettings() {
     restricted: true,
     requiresReload: true,
     type: Number,
-    range: { min: -2000, max: 4000, step: 10 },
+    range: { min: -2000, max: 4000, step: 1 },
     default: 20
   });
 
@@ -187,7 +187,7 @@ export function registerSettings() {
     restricted: true,
     requiresReload: true,
     type: Number,
-    range: { min: -2000, max: 4000, step: 10 },
+    range: { min: -2000, max: 4000, step: 1 },
     default: 80
   });
 
@@ -242,7 +242,7 @@ export function registerSettings() {
     config: true,
     restricted: true,
     type: Number,
-    range: { min: 0, max: 400, step: 10 },
+    range: { min: 0, max: 400, step: 1 },
     default: 120,
     onChange: () => Hooks.callAll(`${MODULE_ID}.refocus`)
   });
@@ -311,7 +311,7 @@ export function registerSettings() {
     config: true,
     restricted: true,
     type: Number,
-    range: { min: 0, max: 200, step: 5 },
+    range: { min: 0, max: 200, step: 1 },
     default: 24
   });
 
@@ -333,7 +333,7 @@ export function registerSettings() {
     config: true,
     restricted: true,
     type: Number,
-    range: { min: 0, max: 4000, step: 100 },
+    range: { min: 0, max: 4000, step: 1 },
     default: 1400
   });
 

@@ -2,6 +2,13 @@
 
 All notable changes to MK-Observer are documented in this file.
 
+## [0.5.5]
+
+### Changed
+
+- Scene-limit margins now act as fixed screen-space padding on the locked observer viewport at every zoom level.
+- Pixel-based numeric settings now use one-pixel increments.
+
 ## [0.5.4]
 
 ### Changed

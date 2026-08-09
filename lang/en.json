@@ -17,23 +17,23 @@
       },
       "limitToScene": {
         "name": "Limit Observer Camera to Scene",
-        "hint": "Keep the Observer User's pan and zoom within the active scene and the configured scene limit margins. Automatic and Directed camera targets are also constrained. This can raise the zoom enough to avoid showing the padded canvas."
+        "hint": "Keep the Observer User's visible viewport within the active scene and the configured boundary padding. Automatic and Directed camera targets are also constrained. This can raise the zoom enough to avoid showing the padded canvas."
       },
       "sceneMarginTop": {
         "name": "Scene Limit Top Margin",
-        "hint": "Adjust the observer camera's top limit in scene pixels. Positive values move it inward; negative values move it outward. Only used when Limit Observer Camera to Scene is enabled."
+        "hint": "Top margin in screen pixels, applied as padding to the locked observer viewport. Positive values keep the view farther inside the scene; negative values permit it beyond the scene edge."
       },
       "sceneMarginBottom": {
         "name": "Scene Limit Bottom Margin",
-        "hint": "Adjust the observer camera's bottom limit in scene pixels. Positive values move it inward; negative values move it outward. Only used when Limit Observer Camera to Scene is enabled."
+        "hint": "Bottom margin in screen pixels, applied as padding to the locked observer viewport. Positive values keep the view farther inside the scene; negative values permit it beyond the scene edge."
       },
       "sceneMarginLeft": {
         "name": "Scene Limit Left Margin",
-        "hint": "Adjust the observer camera's left limit in scene pixels. Positive values move it inward; negative values move it outward. Only used when Limit Observer Camera to Scene is enabled."
+        "hint": "Left margin in screen pixels, applied as padding to the locked observer viewport. Positive values keep the view farther inside the scene; negative values permit it beyond the scene edge."
       },
       "sceneMarginRight": {
         "name": "Scene Limit Right Margin",
-        "hint": "Adjust the observer camera's right limit in scene pixels. Positive values move it inward; negative values move it outward. Only used when Limit Observer Camera to Scene is enabled."
+        "hint": "Right margin in screen pixels, applied as padding to the locked observer viewport. Positive values keep the view farther inside the scene; negative values permit it beyond the scene edge."
       },
       "hideObserverUI": {
         "name": "Use Minimal Observer Interface",

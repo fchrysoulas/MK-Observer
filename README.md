@@ -1,4 +1,4 @@
-# MK-Observer v0.5.4
+# MK-Observer v0.5.5
 
 MK-Observer is a lightweight observer and stream-view module for Foundry Virtual Tabletop v13–v14.
 
@@ -60,7 +60,7 @@ The observer camera stays manual and never moves automatically.
 
 ## Observer scene limits
 
-Enable **Limit Observer Camera to Scene** to keep only the **Observer User** inside the active scene's bounds. It prevents manual pan and zoom from exposing the padded canvas, and constrains both Automatic and Directed camera targets. Optional top, bottom, left, and right margins range from -500 to 500 scene pixels: positive values move a limit inward and negative values move it outward. The setting may zoom in as needed to fill the observer's viewport; GMs and other players are unaffected.
+Enable **Limit Observer Camera to Scene** to keep only the **Observer User** inside the active scene's bounds. It prevents manual pan and zoom from exposing the padded canvas, and constrains both Automatic and Directed camera targets. Optional top, bottom, left, and right margins range from -500 to 500 screen pixels and act as padding on the visible viewport at every zoom level. Positive values keep the view farther inside an edge; negative values permit the view beyond it. The setting may zoom in as needed to satisfy those boundaries; GMs and other players are unaffected.
 
 ## Observer chat window modes
 

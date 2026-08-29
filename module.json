@@ -20,6 +20,31 @@
     "verified": 14,
     "maximum": 14
   },
+  "flags": {
+    "mk-module-hub": {
+      "schemaVersion": 1,
+      "category": "gm-tools",
+      "status": "beta",
+      "icon": "fa-solid fa-video",
+      "summary": "A minimal observer and stream view for Foundry VTT with cinematic camera tracking, combat focus, manual token tracking, GM-directed camera control, native chat notifications, optional detached chat, observer-only Dice So Nice suppression, and robust observer/chat control hiding.",
+      "tags": [
+        "Observer",
+        "Streaming",
+        "Camera",
+        "Chat",
+        "GM Tools"
+      ],
+      "features": [
+        "Dedicated observer and stream user",
+        "Automatic, directed, and disabled camera modes",
+        "Manual token and group tracking",
+        "Observer scene limits",
+        "Native, floating, or detached observer chat",
+        "Optional Dice So Nice and chat-control hiding",
+        "Cinematic camera smoothing controls"
+      ]
+    }
+  },
   "esmodules": [
     "scripts/main.js"
   ],

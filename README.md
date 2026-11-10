@@ -1,4 +1,4 @@
-# MK-Observer v0.5.5
+# MK-Observer
 
 MK-Observer is a lightweight observer and stream-view module for Foundry Virtual Tabletop v13–v14.
 
@@ -11,6 +11,7 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 - Supports manual token/group tracking from the Token HUD.
 - Includes optional observer chat as native notifications, a floating window, or a detached window.
 - Preserves chat content while optionally hiding Dice So Nice 3D dice and chat controls.
+- Exports and imports module settings as JSON backups.
 - Works without extra module dependencies.
 
 ## Installation
@@ -43,6 +44,15 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 6. Configure **Observer Chat Display** if chat should appear separately.
 7. Reload Foundry after changing observer or interface settings.
 8. Log in as that user from OBS, another browser profile, or a second device.
+
+## Export and import settings
+
+As GM, open **Configure Settings → Module Settings → MK-Observer → Export / Import Settings**.
+
+- **Export Settings** downloads the world's saved MK-Observer settings as JSON. Save any pending settings changes first.
+- Select a backup and press **Import Settings**, then confirm. The file is validated before any changes are applied; settings missing from the backup keep their current values.
+- Backups include camera, interface, chat, and Observer User settings. If that user is missing or is a GM in the destination world, the current Observer User selection is kept and a warning is shown. Token tracking flags are not included.
+- Reload all connected Foundry clients, including the Observer User, after importing.
 
 ## Camera modes
 

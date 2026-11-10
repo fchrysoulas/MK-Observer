@@ -1,0 +1,17 @@
+<section class="standard-form">
+  <p>{{localize "mk-observer.settingsTransfer.description"}}</p>
+  <button type="button" data-action="exportSettings">
+    <i class="fas fa-file-export" inert></i>
+    {{localize "mk-observer.settingsTransfer.export"}}
+  </button>
+  <hr>
+  <div class="form-group stacked">
+    <label for="mk-observer-settings-file">{{localize "mk-observer.settingsTransfer.file"}}</label>
+    <input id="mk-observer-settings-file" type="file" name="settingsFile" accept=".json,application/json">
+    <p class="hint">{{localize "mk-observer.settingsTransfer.importHint"}}</p>
+  </div>
+  <button type="button" data-action="importSettings">
+    <i class="fas fa-file-import" inert></i>
+    {{localize "mk-observer.settingsTransfer.import"}}
+  </button>
+</section>

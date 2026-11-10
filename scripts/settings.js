@@ -5,6 +5,7 @@ import {
   MODULE_ID,
   SETTINGS
 } from "./constants.js";
+import { registerSettingsTransferMenu } from "./settings-transfer.js";
 
 function key(setting, part) {
   return `${MODULE_ID}.settings.${setting}.${part}`;
@@ -23,6 +24,8 @@ function register(keyName, data) {
 }
 
 export function registerSettings() {
+  registerSettingsTransferMenu();
+
   register(SETTINGS.OBSERVER_USER_ID, {
     name: key(SETTINGS.OBSERVER_USER_ID, "name"),
     hint: key(SETTINGS.OBSERVER_USER_ID, "hint"),

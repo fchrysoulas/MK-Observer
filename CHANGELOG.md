@@ -2,6 +2,12 @@
 
 All notable changes to MK-Observer are documented in this file.
 
+## [0.5.8]
+
+### Added
+
+- GM-only JSON settings export and import, with validation, import confirmation, and preservation of the current Observer User when the saved user is unavailable or is a GM.
+
 ## [0.5.7]
 
 ### Fixed

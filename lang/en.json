@@ -164,6 +164,30 @@
         "hint": "Suppress the Dice So Nice 3D dice layer only on the selected observer client. Chat roll cards, formulas, and numerical results remain visible."
       }
     },
+    "settingsTransfer": {
+      "title": "Export / Import Settings",
+      "open": "Manage Settings Backup",
+      "hint": "Export MK-Observer settings to a JSON file or import a saved backup. GM only.",
+      "description": "Export the saved MK-Observer settings for this world, including camera, interface, and chat options. Save any pending settings changes before exporting.",
+      "export": "Export Settings",
+      "file": "Settings Backup (JSON)",
+      "import": "Import Settings",
+      "importHint": "Import replaces only the settings included in the file. If the saved Observer User is unavailable or is a GM, the current selection is kept. Token tracking flags are not included.",
+      "chooseFile": "Choose an MK-Observer settings JSON file first.",
+      "confirmImport": "Apply the settings from this backup to the current world? Settings included in the file will replace their saved values. Reload all connected clients, including the Observer User, after importing.",
+      "gmOnly": "Only a GM can export or import MK-Observer settings.",
+      "invalidFile": "This is not a valid MK-Observer settings backup. No settings were imported.",
+      "unsupportedSchema": "This backup uses an unsupported file format version. No settings were imported.",
+      "invalidSetting": "The backup contains an unknown setting or an invalid setting value. No settings were imported.",
+      "invalidScale": "Minimum Camera Scale must not exceed Maximum Camera Scale. No settings were imported.",
+      "observerSkipped": "The saved Observer User is unavailable or is a GM. The current Observer User selection was kept; select a dedicated non-GM user if needed.",
+      "imported": "MK-Observer settings imported: {count} changed.",
+      "reloadRequired": "Reload Foundry on all connected clients, including the Observer User, to apply the imported settings fully.",
+      "exportFailed": "Could not export MK-Observer settings. See the browser console for details.",
+      "importFailed": "Could not read or import the settings backup. See the browser console for details.",
+      "importRestored": "The import failed. Previous settings were restored. Reload all connected clients before trying again.",
+      "importIncomplete": "The import failed and some settings could not be restored. Review the module settings and reload all connected clients before trying again."
+    },
     "ui": {
       "trackTokens": "Track selected token(s) with MK-Observer",
       "untrackTokens": "Stop tracking selected token(s) with MK-Observer"
